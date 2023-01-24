@@ -2,6 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :arch, primary: true do |arch|
     arch.vm.box = "generic/arch" # change to desired vagrant box
     arch.vm.provision :shell, path: "provision.sh"
+    arch.vm.network "forwarded_port", guest: 22, host: 22022
     arch.vm.provider :libvirt do |lv|
       lv.cpus = 2
       lv.memory = 4096
